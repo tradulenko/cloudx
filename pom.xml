@@ -45,6 +45,12 @@
 			<groupId>software.amazon.awssdk</groupId>
 			<artifactId>iam</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>ec2</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

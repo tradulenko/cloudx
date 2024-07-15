@@ -15,5 +15,5 @@ import org.junit.runners.Suite;
         CXQA_IAM_02_IamRoleTest.class,
         CXQA_IAM_04_IamUserTest.class
 })
-public class RegressionSuite {
+public class IAM_RegressionSuite {
 }
