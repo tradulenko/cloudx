@@ -23,17 +23,8 @@ public class CXQA_S3_01_instatce_requirement extends AbstractTest {
 
     @Test
     public void checkEC2types() throws IOException {
-        DescribeInstancesResponse response = ec2.describeInstances();
 
-        List<Instance> instanceList = response.reservations().stream()
-                .flatMap(reservation -> reservation.instances().stream())
-                .toList();
-
-        if (instanceList.size() == 1) {
-            System.out.println("Found the expected instance: " + instanceList.get(0).instanceId());
-        } else {
-            Assert.fail("The expected instance was not found.  List of instances  " + instanceList);
-        }
+        List<Instance> instanceList = getListRunningInstances();
 
         Instance actualInstance = instanceList.get(0);
         String publicIpAddress = actualInstance.publicIpAddress();

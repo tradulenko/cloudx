@@ -28,24 +28,16 @@ public class CXQA_S3_03_04_05_06_work_with_file extends AbstractTest {
 
     @Before
     public void setup() {
+
         File dir = new File(".\\target\\files");
+        dir.mkdirs();
         for (File file : dir.listFiles()) {
             file.delete();
             System.out.println(file + " file was  deleted");
         }
         System.out.println("Files were deleted ");
 
-        DescribeInstancesResponse response = ec2.describeInstances();
-
-        List<Instance> instanceList = response.reservations().stream()
-                .flatMap(reservation -> reservation.instances().stream())
-                .toList();
-
-        if (instanceList.size() == 1) {
-            System.out.println("Found the expected instance: " + instanceList.get(0).instanceId());
-        } else {
-            Assert.fail("The expected instance was not found.  List of instances  " + instanceList);
-        }
+        List<Instance> instanceList = getListRunningInstances();
 
         Instance actualInstance = instanceList.get(0);
         publicIpAddress = actualInstance.publicIpAddress();
